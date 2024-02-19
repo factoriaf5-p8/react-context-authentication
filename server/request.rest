@@ -1,0 +1,16 @@
+POST http://localhost:3001/users
+Content-Type: application/json
+
+{
+  "email": "mi@mail.com",
+  "password": "123456"
+}
+
+######3333
+POST http://localhost:3001/login
+Content-Type: application/json
+
+{
+  "email": "mi@mail.com",
+  "password": "123456"
+}

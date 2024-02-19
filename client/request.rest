@@ -1,0 +1,11 @@
+POST https://jsonplaceholder.org/users
+Content-Type: application/json
+
+{
+  "username": "bobjohnson",
+  "password": "jsonplaceholder.org"
+}
+
+####
+GET https://jsonplaceholder.org/users
+
