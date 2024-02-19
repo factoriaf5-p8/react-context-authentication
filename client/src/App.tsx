@@ -1,14 +1,10 @@
-import { UserProvider } from './context/UserContext';
-import { router } from './routes/Router';
-import {RouterProvider} from 'react-router-dom';
+import { RouterProvider } from "react-router-dom"
+import { router } from "./routes/Router"
 
 function App() {
+
   return (
-
-    <UserProvider>
-      <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>}/>
-    </UserProvider>
-
+      <RouterProvider router={router} fallbackElement={<p>Initial load...</p>}/>
   )
 }
 

@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../api/authApi';
+import { loginService } from '../services/AuthService';
 
 export const Login = () => {
 
@@ -19,7 +19,7 @@ export const Login = () => {
 	const onSubmit = async (e:FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
-			await login(username, password);
+			await loginService(username, password);
 			navigate('/admin');
 		} catch (error) {
 			console.error('error', error);

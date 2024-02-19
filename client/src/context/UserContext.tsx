@@ -1,23 +1,25 @@
-import { createContext, useEffect, useState, Dispatch } from "react"
-import { isAuthenticated } from "../services/AuthService";
-import { Login } from "../pages/Login";
+import { useState, useEffect, createContext, Dispatch } from 'react';
+import { ChildrenProps, User } from '../types/types';
+import { isAuthenticated } from '../services/AuthService';
+import { useNavigate } from 'react-router-dom';
 
-// export type IUserContext = {
-//     currentUser: string;
-//     setCurrentUser: Dispatch<any>
-// }
-const UserContext = createContext<[currentUser: string,
-    setCurrentUser: Dispatch<any>] | null>(null);
+type CurrentUserType = [User, Dispatch<User>];
 
-export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-    const [currentUser, setCurrentUser] = useState(null);
+export const UserContext = createContext<CurrentUserType>([{ accessToken: '' },()=>{}]);
+
+export const UserProvider = ({ children }: ChildrenProps) => {
+    const navigate = useNavigate();
+    const [currentUser, setCurrentUser] = useState({ accessToken: '' });
 
     useEffect(() => {
         const checkLoggedIn = async () => {
             let cuser = isAuthenticated();
-            if (cuser === null) {
+            console.log(cuser);
+
+            if (!cuser) {
                 localStorage.setItem('user', '');
                 cuser = '';
+                navigate('/login')
             }
 
             setCurrentUser(cuser);
@@ -26,11 +28,11 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         checkLoggedIn();
     }, []);
 
+    // console.log('usercontext', currentUser);
+
     return (
-        <UserContext.Provider value={currentUser !== null ? [ currentUser, setCurrentUser ] : null}>
-            {(currentUser as any)?.token ? children : <Login />}
+        <UserContext.Provider value={[currentUser, setCurrentUser]}>
+            {children}
         </UserContext.Provider>
     );
-}
-
-export default UserContext;
+};

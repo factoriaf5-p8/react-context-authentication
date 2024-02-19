@@ -1,7 +1,10 @@
-import {login} from '../api/authApi';
+import { login } from '../api/authApi';
 
-export const loginService = async (email:string, password:string) => {
-	const response = await login(email,password)
+export const loginService = async (email: string, password: string) => {
+
+	const response = await login(email, password);
+	console.log(response.data);
+
 	const token = response.data.accessToken;
 	if (token) {
 		localStorage.setItem('user', JSON.stringify(response.data));
@@ -13,7 +16,7 @@ export const loginService = async (email:string, password:string) => {
 export const isAuthenticated = () => {
 	const user = localStorage.getItem('user');
 	if (!user) {
-		return {}
+		return null
 	}
 	return JSON.parse(user);
 };
