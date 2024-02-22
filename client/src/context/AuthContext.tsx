@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 type CurrentUserType = [User, Dispatch<User>];
 
-export const UserContext = createContext<CurrentUserType>([{ accessToken: '' },()=>{}]);
+export const AuthContext = createContext<CurrentUserType>([{ accessToken: '' },()=>{}]);
 
-export const UserProvider = ({ children }: ChildrenProps) => {
+export const AuthProvider = ({ children }: ChildrenProps) => {
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({ accessToken: '' });
 
@@ -31,8 +31,8 @@ export const UserProvider = ({ children }: ChildrenProps) => {
     // console.log('usercontext', currentUser);
 
     return (
-        <UserContext.Provider value={[currentUser, setCurrentUser]}>
+        <AuthContext.Provider value={[currentUser, setCurrentUser]}>
             {children}
-        </UserContext.Provider>
+        </AuthContext.Provider>
     );
 };

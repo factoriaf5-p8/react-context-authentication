@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 export const Header = () => {
@@ -8,7 +8,7 @@ export const Header = () => {
 
     const handleLogOut = () => {
         localStorage.removeItem('user');
-        setCurrentUser({accessToken:''});
+        setCurrentUser({ accessToken: '' });
         navigate('/login');
     };
 

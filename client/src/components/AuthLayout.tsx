@@ -1,10 +1,10 @@
 import {
     Outlet
 } from 'react-router-dom';
-import { UserProvider } from '../context/UserContext';
+import { AuthProvider } from '../context/AuthContext';
 
 export const AuthLayout = () => (
-    <UserProvider>
+    <AuthProvider>
         <Outlet />
-    </UserProvider>
+    </AuthProvider>
 );
