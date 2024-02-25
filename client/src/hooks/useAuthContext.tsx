@@ -1,7 +1,7 @@
 import { useEffect, createContext, Dispatch, useContext } from 'react';
 import { ChildrenProps, User } from '../types/types';
 import { useNavigate } from 'react-router-dom';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { useLocalStorage } from './useLocalStorage';
 
 type CurrentUserType = [User | null, Dispatch<User>];
 
@@ -12,7 +12,7 @@ const AuthProvider = ({ children }: ChildrenProps) => {
     const [currentUser, setCurrentUser] = useLocalStorage('user', '');
 
     useEffect(() => {
-         (() => !currentUser || currentUser.accessToken === ''? navigate('/login'):null)();
+        (() => !currentUser || currentUser.accessToken === '' ? navigate('/login') : null)();
     }, [currentUser]);
 
     return (
@@ -24,5 +24,5 @@ const AuthProvider = ({ children }: ChildrenProps) => {
 
 const useAuth = () => useContext(AuthContext);
 
-export {AuthProvider, useAuth}
+export { AuthProvider, useAuth }
 
