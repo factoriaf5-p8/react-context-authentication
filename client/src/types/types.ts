@@ -3,5 +3,12 @@ export type ChildrenProps = {
 }
 
 export type User = {
-    accessToken:string;
+    accessToken: string;
+}
+
+export type Product = { id?:number, name: string; description: string; price: number; }
+
+export type LoginDto = {
+    email: string;
+    password: string;
 }

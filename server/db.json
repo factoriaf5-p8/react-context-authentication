@@ -5,5 +5,67 @@
       "password": "$2a$10$GEd/NoAxPVHEFKrc2U14febupvjEpilRwguntDMuTIIunl7.lHnS2",
       "id": 1
     }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Balón de fútbol",
+      "description": "Balón de fútbol de tamaño oficial",
+      "price": 25
+    },
+    {
+      "id": 2,
+      "name": "Raqueta de tenis",
+      "description": "Raqueta de tenis ligera",
+      "price": 80
+    },
+    {
+      "id": 3,
+      "name": "Zapatillas de running",
+      "description": "Zapatillas de running para hombre, talla 42",
+      "price": 120
+    },
+    {
+      "id": 4,
+      "name": "Bicicleta de montaña",
+      "description": "Bicicleta de montaña con 21 velocidades",
+      "price": 500
+    },
+    {
+      "id": 5,
+      "name": "Casco de ciclismo",
+      "description": "Casco de ciclismo ajustable",
+      "price": 70
+    },
+    {
+      "id": 6,
+      "name": "Guantes de boxeo",
+      "description": "Guantes de boxeo de cuero",
+      "price": 35
+    },
+    {
+      "id": 7,
+      "name": "Botas de fútbol",
+      "description": "Botas de fútbol para césped artificial, talla 44",
+      "price": 90
+    },
+    {
+      "id": 8,
+      "name": "Camiseta de baloncesto",
+      "description": "Camiseta de baloncesto de la NBA, talla L",
+      "price": 60
+    },
+    {
+      "id": 9,
+      "name": "Pantalones de yoga",
+      "description": "Pantalones de yoga para mujer, talla M",
+      "price": 40
+    },
+    {
+      "id": 10,
+      "name": "Mancuernas",
+      "description": "Set de mancuernas ajustables",
+      "price": 100
+    }
   ]
 }

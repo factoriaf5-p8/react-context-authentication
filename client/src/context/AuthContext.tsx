@@ -1,34 +1,19 @@
-import { useState, useEffect, createContext, Dispatch } from 'react';
+import { useEffect, createContext, Dispatch, useContext } from 'react';
 import { ChildrenProps, User } from '../types/types';
-import { isAuthenticated } from '../services/AuthService';
 import { useNavigate } from 'react-router-dom';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
-type CurrentUserType = [User, Dispatch<User>];
+type CurrentUserType = [User | null, Dispatch<User>];
 
-export const AuthContext = createContext<CurrentUserType>([{ accessToken: '' },()=>{}]);
+const AuthContext = createContext<CurrentUserType>([null, () => { }]);
 
-export const AuthProvider = ({ children }: ChildrenProps) => {
+const AuthProvider = ({ children }: ChildrenProps) => {
     const navigate = useNavigate();
-    const [currentUser, setCurrentUser] = useState({ accessToken: '' });
+    const [currentUser, setCurrentUser] = useLocalStorage('user', '');
 
     useEffect(() => {
-        const checkLoggedIn = async () => {
-            let cuser = isAuthenticated();
-            console.log(cuser);
-
-            if (!cuser) {
-                localStorage.setItem('user', '');
-                cuser = '';
-                navigate('/login')
-            }
-
-            setCurrentUser(cuser);
-        };
-
-        checkLoggedIn();
-    }, []);
-
-    // console.log('usercontext', currentUser);
+         (() => !currentUser || currentUser.accessToken === ''? navigate('/login'):null)();
+    }, [currentUser]);
 
     return (
         <AuthContext.Provider value={[currentUser, setCurrentUser]}>
@@ -36,3 +21,8 @@ export const AuthProvider = ({ children }: ChildrenProps) => {
         </AuthContext.Provider>
     );
 };
+
+const useAuth = () => useContext(AuthContext);
+
+export {AuthProvider, useAuth}
+
